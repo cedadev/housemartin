@@ -12,10 +12,10 @@ Usage: e.g.:
 
 import os, sys, re, glob
 
-import .axis_utils
+import axis_utils
 from roocs_utils.xarray_utils.xarray_utils import get_coord_by_type
 
-from processes.local.GetClimateStats.lib import *
+from lib import *
 
 fmt = "%8.5f"
 

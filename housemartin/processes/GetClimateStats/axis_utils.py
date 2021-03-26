@@ -1,4 +1,9 @@
+"""
+axis_utils.py
+=============
 
+Utils for wokring with arrays/axes.
+"""
 
 
 def find_nearest(array, value):

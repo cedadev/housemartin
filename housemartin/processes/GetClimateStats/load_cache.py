@@ -10,7 +10,6 @@ Locations are held in:
 
 """
 
-from cows_wps.tests.process_tester import *
 import time
 
 # Process identifier
@@ -21,11 +20,13 @@ identifier = "GetClimateStats"
 assets = []
 
 n = 1
-for line in open("processes/local/GetClimateStats/asset_locations.txt"):
-    if line.find("LAT") > -1: continue
-    (lat, lon) = line.strip().split()
-    assets.append("test_%03d,%s,%s" % (n, lat, lon))
-    n += 1
+
+with open("asset_locations.txt") as reader:
+    for line in reader:
+        if line.find("LAT") > -1: continue
+        (lat, lon) = line.strip().split()
+        assets.append("test_%03d,%s,%s" % (n, lat, lon))
+        n += 1
 
 if identifier == "GetClimateStats":
     inputs = {"Experiment": "rcp45", "TimePeriod": "2035"}

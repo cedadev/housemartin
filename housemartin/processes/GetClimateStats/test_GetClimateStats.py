@@ -1,18 +1,5 @@
-"""
-test_process_template.py
-========================
-
-Tests for the "GetClimateStats" process.
-
-To run, just do:
-
- python processes/local/test_process_template.py
-
-Define the tests below and add as many as you want.
-
-"""
-
-from processes.local.GetClimateStats.lib import Location
+from lib import Location
+import xarray as xr
 
 # ----- TEST 1: Check location search works ---- 
 
@@ -38,6 +25,7 @@ UK test: regUK,50,0.0 : Test 9 : 50.5,0.0 : 50.25,0.25 : ARC-44
 """.strip().split("\n")
 
 loc_map = {}
+
 
 for line in mappers:
 

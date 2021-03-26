@@ -16,14 +16,14 @@ from json import encoder
 encoder.FLOAT_REPR = lambda o: format(o, '.2f')
 
 # WPS imports
-from cows_wps.process_handler.fileset import FileSet, FLAG
-import cows_wps.process_handler.process_support as process_support
-from cows_wps.process_handler.context.process_status import STATUS
-import processes.internal.ProcessBase.ProcessBase
+#from cows_wps.process_handler.fileset import FileSet, FLAG
+#import cows_wps.process_handler.process_support as process_support
+#from cows_wps.process_handler.context.process_status import STATUS
+#import processes.internal.ProcessBase.ProcessBase
 
 
 # Local imports
-from processes.local.GetClimateStats.lib import ClimateStatsExtractor, Location, checkValidLocation
+from ..GetClimateStats.lib import ClimateStatsExtractor, Location, checkValidLocation
 
 # NOTE ABOUT LOGGING:
 # You can log with the context.log object
@@ -49,10 +49,6 @@ class GetClimateStats(processes.internal.ProcessBase.ProcessBase.ProcessBase):
     # before they are set (with values as the function doing the processing).
     arg_processers = {}
 
-    #### Set grid reference file
-    ###GRID_REFERENCE_FILE = "/disks/kona2/old-kona1/wps_test/ACCLIMATISE_DATA/1_deg/tas_day_HadGEM2-ES_rcp85_r1i1p1_20460101-20651231_ann_01p_change.nc"
-    ###DIR_TEMPLATE = "/disks/kona2/old-kona1/wps_test/ACCLIMATISE_DATA/%(var_id)s/%(experiment)s/%(inst_model)s/%(time_period)s/1_deg"
-    ###FILE_PATTERN = "%(var_id)s_*_%(experiment)s_*r*_mon_%(stat)s_change.nc"
     
     def _executeProc(self, context, dry_run):
         """

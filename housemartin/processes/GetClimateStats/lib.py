@@ -11,14 +11,16 @@ Holds helper classes and functions for use by processes:
 
 # Standard library imports
 import os, sys, re, glob, logging, copy, types
-import cPickle as pickle
+import pickle
 from collections import OrderedDict
 
+import xarray as xr
+
 # Third-party imports
-import .axis_utils
+import axis_utils
 
 # Local imports
-from processes.local.GetClimateStats.vocabs import vocabs
+from vocabs import vocabs
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
@@ -651,7 +653,7 @@ if __name__ == "__main__":
         x = ClimateStatsExtractor()
         loc = Location("6500,31.010119,26.61568")
         loc = Location("BrentA,61.034917,1.705389")
-        print loc.global_gb, loc.regional_gb
+        print(loc.global_gb, loc.regional_gb)
         #loc = Location("6500,58.00257,-0.37982")
         #loc = Location("ABC,70,40")
 
@@ -668,27 +670,27 @@ if __name__ == "__main__":
         locs = url.split("&")[-2].split(";")[0].split("=")[2].split("|")
 
         for loc in locs:
-            print loc
+            print(loc)
 
         locs = [Location(loc) for loc in locs]
         res = x.extractData("rcp85", "2055", locs)
         sys.exit()
 
         if type(res) is str:
-            print res
+            print(res)
         else:
             for key in res:
-                print key
+                print(key)
                 for sect in res[key]["Locations"]:
                     for k in ['RequestedLocations', 'ModelLocation']:
-                        print k, "--->"
+                        print(k, "--->")
                         pprint.pprint(sect[k])
 
     if do_test_regional: 
         for loc_string in """regNone,-21.9,-41.9 regAFR_MNA,0.0,0.0 regAFR,-14.5,25.7 regARC,84.0,18.5 regEUR,46,2.5 regMNA,44,70 regNAM,40,-100""".split():
             loc = Location(loc_string)
             res = x.extractFullSummaryCSV(loc)
-            print "LOCATION:", loc
-            print res
-            print "--------\n" * 5 
-            print "\n\n\n"
+            print("LOCATION:", loc)
+            print(res)
+            print("--------\n" * 5)
+            print("\n\n\n")
